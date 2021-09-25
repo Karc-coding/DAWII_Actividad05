@@ -1,9 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Ciclo } from '../models/ciclo.model';
+
+const baseUrl = "http://localhost:8090/rest/util"
 
 @Injectable({
   providedIn: 'root'
 })
 export class CicloService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  listAll(): Observable<Ciclo[]>{
+    return this.http.get<Ciclo[]>(baseUrl + "/ciclo")
+  }
+
 }
